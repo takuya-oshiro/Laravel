@@ -8,20 +8,20 @@ class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('users')) {
+            Schema::create('users', function (Blueprint $table) {
+              $table->id();
+              $table->string('name', 64);
+              $table->string('email', 191)->unique();
+              $table->string('password', 191);
+              $table->timestamps();
+              $table->softDeletes();
+            });
+          }
     }
 
     /**
