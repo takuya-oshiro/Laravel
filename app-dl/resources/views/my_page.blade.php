@@ -18,7 +18,7 @@
     </header>
 
     <nav>
-      <a href="MyPage/User">ユーザー情報変更</a>
+      <a href="{{ route('showUserUpdate') }}">ユーザー情報変更</a>
     </nav>
 
     <p><a href=""> <button>コメント一覧</button> </a></p>
@@ -38,10 +38,9 @@
 
           <div>
 
-            <form action="{{ route('post.edit',$ans) }}" method="get">
-              <input type="submit" value="編集">
-            </form>
-
+            <a href="{{ route('post.edit',$ans) }}">編集</a>
+            <!-- <a href="{{ route('post.edit',$ans) }}">削除</a> -->
+            
             <form action="index.php?MyPageController&delete" method="POST">
               <input type="hidden" name="post_id" value="<?php echo $ans['post_id'] ?>">
               <input type="submit" value="削除">
@@ -96,7 +95,7 @@
         <?php ++$i ?>
       <?php endforeach ?>
     </div>
-    <a href="/top">記事一覧へ</a>
+    <a href="{{ route('showTop') }}">記事一覧へ</a>
 
 
   </div>

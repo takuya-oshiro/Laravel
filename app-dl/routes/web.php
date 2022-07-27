@@ -25,7 +25,7 @@ Route::get('apply',[UserController::class, 'showApply'])->name('showApply');
 Route::post('apply',[UserController::class, 'applyEmail'])->name('applyEmail');
 Route::get('applycheck',[UserController::class, 'tokenCheck'])->name('tokenCheck');
 Route::post('registar',[UserController::class, 'registar'])->name('userRegistar');
-Route::get('MyPage', [MyPageController::class, 'show'])->name('showMyPage');
+Route::get('mypage', [MyPageController::class, 'show'])->name('showMyPage');
 Route::post('logout', [UserController::class, 'logout'])->name('logout');
 Route::get('detail', [TopController::class, 'detail'])->name('showDetail');
 Route::post('comment', [PostController::class, 'commentInsert'])->name('commentInsert');
