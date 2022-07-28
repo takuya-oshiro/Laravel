@@ -23,7 +23,7 @@
         <div class="post_frame">
           <div class="posts">
             <span class="title">タイトル : <?php echo $ans["post_title"], $ans->comments_count . '件のコメント' ?></span>
-            <span class="name">投稿ユーザー：<?php echo $ans['name'] ?></span><br>
+            <span class="name">投稿ユーザー：<?php echo $ans->user->name ?></span><br>
             <span class="post_time"><?php echo $ans['updated_at'] ?></span>
             <div>投稿内容 : <?php echo $ans['post_content'] ?></div>
           </div>
@@ -60,13 +60,13 @@
       </div>
 
 
-      <form class="form_wrap" action="AdminDataController.php" method="POST">
+      <form class="form_wrap" action="{{ route('showAdmin') }}" method="get">
         @csrf
-        <div class="csv_import_textarea">
-          <input type="hidden" name="admin_top_trigger" value="1">
-          <input style="width:100%; height:250px;" type="submit" value="csv">
-          <div>
+        <button style="width:100%; height:250px;" type="submit">csv</button>
+        <div>
       </form>
+
     </div>
+
   </div>
   @endsection

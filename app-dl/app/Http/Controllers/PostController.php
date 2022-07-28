@@ -11,6 +11,7 @@ use GuzzleHttp\Psr7\Request;
 
 class PostController extends Controller
 {
+    
     /**
      * 投稿一覧表示
      * @return view
@@ -47,30 +48,5 @@ class PostController extends Controller
         $commentmodel = new Comment();
         $commentmodel->insert($user_id, $post_id, $comment);
         return back();
-    }
-
-    /**
-     * 投稿編集画面の表示
-     *
-     * @return view
-     */
-    public function showEdit(Post $post)
-    {
-        return view('post_edit', compact('post'));
-    }
-
-    /**
-     * 投稿編集画面の表示
-     *
-     * @return view
-     */
-    public function update(Post $post,PostRequest $request)
-    {
-        if(session('login_user')->isNot($post->user)){
-            return back()->with('flash_message', '自分の投稿のみ編集可能です');
-        }
-        $data = $request->only('post_title','post_content');
-        $post->update($data);
-        return view('post_edit', compact('post'));
     }
 }

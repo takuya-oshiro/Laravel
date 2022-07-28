@@ -16,7 +16,7 @@ class TopController extends Controller
             $query->where('post_title', 'LIKE', "%{$keyword}%")
                 ->orWhere('post_content', 'LIKE', "%{$keyword}%");
         }
-        $posts = $query->withCount('comments')->latest('updated_at')->Paginate(5);
+        $posts = $query->with('user')->withCount('comments')->latest('updated_at')->Paginate(5);
         return view('top', compact('posts','keyword'));
     }
 

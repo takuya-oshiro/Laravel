@@ -14,6 +14,7 @@
 </div>
 
 <form action="{{ route('post.update',$post) }}" method="post">
+  @method ('PUT')
   @csrf
   <div>
     タイトル：<br>

@@ -38,13 +38,16 @@
 
           <div>
 
-            <a href="{{ route('post.edit',$ans) }}">編集</a>
-            <!-- <a href="{{ route('post.edit',$ans) }}">削除</a> -->
-            
-            <form action="index.php?MyPageController&delete" method="POST">
-              <input type="hidden" name="post_id" value="<?php echo $ans['post_id'] ?>">
+            <form action="{{ route('post.edit',$ans) }}">
+              @csrf
+              <input type="submit" value="編集">
+            </form>
+
+            <form action="{{ route('post.delete',$ans) }}" method="post">
+              @csrf
+              @method('DELETE')
               <input type="submit" value="削除">
-            </form><br>
+            </form>
 
           </div>
 
@@ -64,33 +67,33 @@
               <span class="post_time"><?php echo $post->updated_at ?></span>
             </div><br>
           </div>
-          
+
           <p>コメント</p>
           <?php foreach ($post->comments as $com) : ?>
             <div class="post_frame posts">
-              
+
               <div>
                 <p>内容：{{ $com->comment }} </p>
-                <p>コメント時間：{{ $com->updated_at }}  </p>
+                <p>コメント時間：{{ $com->updated_at }} </p>
               </div>
-              
+
               <div>
 
-                <form action="post/edit" method="POST">
-                  <input type="hidden" name='id' value="<?php echo $com->comment_id ?>">
+                <form action="{{ route('comment.edit',$com) }}">
+                  @csrf
                   <input type="submit" value="編集">
                 </form>
-                
-                <form action="post/delete" method="POST">
-                  <input type="hidden" name="id" value="<?php echo $com->comment_id ?>">
-                  <input type="submit" value="削除">
-                </form><br>
 
+                <form action="{{ route('comment.delete',$com) }}" method="post">
+                  @csrf
+                  @method('DELETE')
+                  <input type="submit" value="削除">
+                </form>
               </div>
-              
+
             </div>
-            <?php endforeach ?>
-          </div>
+          <?php endforeach ?>
+        </div>
 
         <?php ++$i ?>
       <?php endforeach ?>
