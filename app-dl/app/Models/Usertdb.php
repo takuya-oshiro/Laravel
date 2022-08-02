@@ -24,13 +24,14 @@ class Usertdb extends Model
 
     /**
      * インサート処理
-     * @param array $request
+     * @param string $request['email']
+     * @param array $token
      * @return void
      */
-    public function insertTdbUser(array $request)
+    public function insertTdbUser(string $email, string $token)
     {
-        $this->urltoken = $request['urltoken'];
-        $this->mail = $request['email'];
+        $this->urltoken = $token;
+        $this->mail = $email;
         $this->flag = 0;
         $this->save();
     }

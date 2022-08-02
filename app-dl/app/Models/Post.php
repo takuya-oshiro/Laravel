@@ -83,6 +83,6 @@ class Post extends Model
         return Post::with('comments')
         ->whereHas('comments', function ($q) use ($user_id) {
             $q->where('user_id', $user_id);
-        })->get();            
+        })->Paginate(5);            
     }
 }

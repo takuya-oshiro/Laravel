@@ -1,5 +1,6 @@
 <?php
 
+//use App\Http\Kernel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AuthController;
@@ -7,6 +8,9 @@ use App\Http\Controllers\TopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\AdminController;
+use App\Http\Middleware\UserCheckMiddleware;
+//use App\Http\Middleware\Authenticate;
+//use Illuminate\Routing\Route as RoutingRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,13 +27,15 @@ Route::get('post', [PostController::class, 'create'])->name('createPost');
 Route::post('post', [PostController::class, 'insert'])->name('insertPost');
 Route::get('top', [TopController::class, 'show'])->name('showTop');
 Route::get('apply', [UserController::class, 'showApply'])->name('showApply');
-Route::post('apply', [UserController::class, 'applyEmail'])->name('applyEmail');
-Route::get('applycheck', [UserController::class, 'tokenCheck'])->name('tokenCheck');
+Route::post('apply', [AuthController::class, 'applyEmail'])->name('applyEmail');
+Route::get('applycheck', [AuthController::class, 'tokenCheck'])->name('tokenCheck');
 Route::post('registar', [UserController::class, 'registar'])->name('userRegistar');
-Route::get('mypage', [MyPageController::class, 'show'])->name('showMyPage');
+Route::get('mypage/posts', [MyPageController::class, 'posts'])->name('myPage.Posts');
+Route::get('mypage.comments', [MyPageController::class, 'comments'])->name('myPage.Comments');
 Route::post('logout', [UserController::class, 'logout'])->name('logout');
-Route::get('detail', [TopController::class, 'detail'])->name('showDetail');
+Route::get('detail/{post}', [TopController::class, 'detail'])->name('showDetail');
 Route::post('comment', [PostController::class, 'commentInsert'])->name('commentInsert');
+
 
 Route::get('mypage/user', [MyPageController::class, 'showUserUpdate'])->name('showUserUpdate');
 Route::put('mypage/user', [UserController::class, 'update'])->name('updateUser');
@@ -43,4 +49,6 @@ Route::get('mypage/comment/edit/{comment}',      [MyPageController::class, 'show
 Route::put('mypage/comment/edit/{comment}',      [MyPageController::class, 'commentUpdate'])->name('comment.update');
 Route::delete('mypage/comment/delete/{comment}', [MyPageController::class, 'commentDelete'])->name('comment.delete');
 
-Route::get('admin', [AdminController::class, 'show'])->name('showAdmin');
+Route::get('admin',      [AdminController::class, 'show'])->name('admin');
+Route::get('admin/user', [AdminController::class, 'showUser'])->name('adminUser');
+Route::get('admin/post', [AdminController::class, 'showPost'])->name('adminPost');

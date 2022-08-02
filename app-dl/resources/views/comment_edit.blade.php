@@ -22,7 +22,7 @@
   <button type="submit" class="btn btn-primary">送信</button>
 </form>
 
-<a href="{{ route('showMyPage') }}">記事一覧へ</a>
+<a href="{{ route('myPage.Comments') }}">コメント一覧へ</a>
 
 @if (session('flash_message'))
   <div class="flash_message">

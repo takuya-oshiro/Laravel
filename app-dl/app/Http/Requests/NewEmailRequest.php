@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\User;
 
 class NewEmailRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class NewEmailRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required | max:510'
+            'email' => ['regex:/^[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/' , 'max:510']
         ];
     }
 }
