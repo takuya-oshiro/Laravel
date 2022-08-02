@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.parent')
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>本登録</title>
-</head>
-
-<body>
+@section('content')
+<div class="text-center mt-4">
   @foreach ($errors->all() as $error)
   <li>{{$error}}</li>
   @endforeach
@@ -26,10 +19,12 @@
     <p>パスワード：<input type="password" name="password" value=""></p>
     <p>パスワード(再)：<input type="password" name="password_confirmation" value=""></p>
     <p><input type="submit" value="決定"></p>
-
   </form>
 
-
-</body>
-
-</html>
+  @if (session('flash_error'))
+  <div class="flash_message">
+    {{ session('flash_error') }}
+  </div>
+  @endif
+</div>
+@endsection

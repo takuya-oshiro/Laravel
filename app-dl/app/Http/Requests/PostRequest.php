@@ -28,4 +28,17 @@ class PostRequest extends FormRequest
             'post_content' => 'required | max:191'
         ];
     }
+
+    /**
+     * Get data to be validated from the request.
+     *
+     * @return array
+     */
+    public function validationData()
+    {
+
+
+        
+        return $this->all();
+    }
 }

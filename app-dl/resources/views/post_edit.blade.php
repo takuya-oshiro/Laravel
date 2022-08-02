@@ -14,6 +14,7 @@
 </div>
 
 <form action="{{ route('post.update',$post) }}" method="post">
+  @method ('PUT')
   @csrf
   <div>
     タイトル：<br>
@@ -26,7 +27,7 @@
   <button type="submit" class="btn btn-primary">送信</button>
 </form>
 
-<a href="{{ route('showMyPage') }}">記事一覧へ</a>
+<a href="{{ route('myPage.Posts') }}">記事一覧へ</a>
 
 @if (session('flash_message'))
   <div class="flash_message">
